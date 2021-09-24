@@ -1,3 +1,4 @@
+#include <algorithm>
 #include <array>
 #include <numeric>
 
@@ -7,14 +8,12 @@ class Solution {
     if (n < 2) {
       return n;
     }
-    std::array<int, 3> f = {1, 1, 0};
+    std::array<int, 4> f = {1, 1, 0};
 
     while (--n > 1) {
-      auto f_n_3 = std::accumulate(begin(f), end(f), 0);
-      f[2] = f[1];
-      f[1] = f[0];
-      f[0] = f_n_3;
+      f.back() = std::accumulate(begin(f), std::prev(end(f)), 0);
+      std::rotate(f.rbegin(), f.rbegin() + 1, f.rend());
     }
-    return f[0];
+    return f.front();
   }
 };
