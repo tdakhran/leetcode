@@ -1,0 +1,6 @@
+-Weverything
+-Werror
+-Wno-c++98-compat
+-Wno-c++98-compat-pedantic
+-std=c++17
+-Wno-c++17-extensions
