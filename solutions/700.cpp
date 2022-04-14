@@ -1,14 +1,9 @@
 class Solution {
  public:
   TreeNode *searchBST(TreeNode *root, int val) {
-    if (not root) {
-      return nullptr;
+    if (not root or val == root->val) {
+      return root;
     }
-    if (val < root->val) {
-      return searchBST(root->left, val);
-    } else if (val > root->val) {
-      return searchBST(root->right, val);
-    }
-    return root;
+    return searchBST(val < root->val ? root->left : root->right, val);
   }
 };
