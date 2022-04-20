@@ -3,22 +3,20 @@
 class BSTIterator {
   std::stack<TreeNode *> st;
 
- public:
-  BSTIterator(TreeNode *root) {
-    while (root) {
-      st.push(root);
-      root = root->left;
+  void push_left(TreeNode *node) {
+    while (node) {
+      st.push(node);
+      node = node->left;
     }
   }
+
+ public:
+  BSTIterator(TreeNode *root) { push_left(root); }
 
   int next() {
     auto node = st.top();
     st.pop();
-    auto it = node->right;
-    while (it) {
-      st.push(it);
-      it = it->left;
-    }
+    push_left(node->right);
     return node->val;
   }
 
